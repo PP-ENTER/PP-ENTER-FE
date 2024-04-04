@@ -1,4 +1,4 @@
-# PP-ENTER-PE
+# PP-ENTER-FE
 소셜 미디어 웹 서비스
 
 공용 UI 작업
