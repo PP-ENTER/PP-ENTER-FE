@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PP&ENTER</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <div class="flex-grow flex justify-center items-center">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-xl ">
+            <div class="flex flex-col items-center mb-8">
+                <div class="rounded-lg overflow-hidden">
+                    <img src="media\img\img_logo.png" alt="logo Image" class="h-16 mr-4 mb-4" >
+                </div>
+            <form id="signup-form" class="w-full max-w-xg mx-auto bg-white mt-6 mb-4">
+                    <section class="flex flex-col items-center">
+                        <div class="mb-4 w-full max-w-md flex items-center">
+                            <label class="w-1/5 text-gray-700 font-bold mr-2" for="username">아이디</label>
+                            <input type="text" id="username" placeholder="아이디를 입력하세요" class="w-4/5 p-2 border rounded bg-white-100">
+                        </div>
+                        <div class="mb-4 w-full max-w-md flex items-center">
+                            <label class="w-1/5 text-gray-700 font-bold mr-2" for="password">비밀번호</label>
+                            <input type="password" id="password" placeholder="비밀번호를 입력하세요" class="w-4/5 p-2 border rounded bg-white-100">
+                        </div>
+                        <div class="mb-4 w-full max-w-md flex items-center justify-center">
+                            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#" id="login-link">
+                                로그인
+                            </a>
+                        </div>
+                    </section>
+                </form>
+                <div class="flex justify-center">
+                    <button class="bg-yellow-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4">
+                        회원가입
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="w-full bg-white py-4 mt-auto">
+        <div class="container flex justify-center mx-auto text-center text-gray ">
+            &copy; 2024 PP&ENTER. All rights reserved.
+        </div>
+    </footer>
+    <script src="login.js"></script>
+</body>
+</html>
