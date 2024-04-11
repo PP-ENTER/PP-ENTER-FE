@@ -22,8 +22,8 @@
 
         <div class="flex items-center" style="max-width: 50%; width: 100%; margin: auto;">
           <form id="chat-form" class="flex w-full">
-            <input type="search" class="flex-1 px-4 py-2 border-2 rounded-lg" placeholder="메인 검색창에 작성됩니다.">
-            <button class="ml-3 px-8 border-2 rounded-lg bg-custom-whiteblue hover:bg-blue-600 text-white">
+            <input id="search-input" type="search" class="flex-1 px-4 py-2 border-2 rounded-lg" placeholder="메인 검색창에 작성됩니다.">
+            <button id = "search-button" class="ml-3 px-8 border-2 rounded-lg bg-custom-whiteblue hover:bg-blue-600 text-white">
               검색
             </button>
 
@@ -123,6 +123,7 @@
   </footer>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      console.log(1)
       const userId = getUserIdFromUrl();
       if (userId) {
         fetchUserData(userId);
@@ -199,6 +200,42 @@
 
       return card;
     }
+
+
+    const searchInput = document.getElementById('search-input'); // 검색어 입력란
+    const searchButton = document.getElementById('search-button'); // 검색 버튼
+
+    // 검색 버튼 클릭 이벤트 리스너 추가
+    searchButton.addEventListener('click', () => {
+      event.preventDefault(); // 폼의 기본 제출 동작 방지
+      const query = searchInput
+        .value
+        .trim(); // 입력된 검색어
+
+      // API 엔드포인트 URL
+      const url = `http://localhost:8000/posts/posts_detail_list_search/${query}/`;
+
+
+      // fetch를 사용하여 API에 GET 요청
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json(); // JSON 형식으로 응답 받음
+        })
+        .then(data => {
+          const container = document.getElementById('cardSlider');
+          container.innerHTML = '';
+          data.forEach(post => {
+            const card = createCardElement(post);
+            container.appendChild(card);
+          });
+        })
+        .catch(error => {
+          console.error('Fetching error:', error);
+        });
+    });
   </script>
 </body>
 
