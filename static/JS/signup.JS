@@ -11,7 +11,7 @@ signupForm.addEventListener('submit', async (e) => {
     const password2 = document.getElementById('password2').value;
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/register/', { #지금은 제 로컬 주소로 되어 있습니다.
+        const response = await fetch('http://127.0.0.1:8000/register/', { // 지금은 제 로컬 주소로 되어 있습니다.
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
