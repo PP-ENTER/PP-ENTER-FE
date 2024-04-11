@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaceChat Room</title>
+</head>
+<body>
+    <h1>Welcome to the FaceChat Room</h1>
+    <div id="roomNumber">Loading room number...</div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // URL에서 쿼리 파라미터 추출하는 함수
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // 'roomId' 쿼리 파라미터의 값을 가져옵니다.
+    const roomId = getQueryParam('roomId');
+
+    // roomId 값이 있으면 페이지에 출력, 없으면 메시지 출력
+    if (roomId) {
+        document.getElementById('roomNumber').textContent = `Room ID: ${roomId}`;
+    } else {
+        document.getElementById('roomNumber').textContent = 'Room ID not found.';
+    }
+});
+
+    </script>
+</body>
+</html>

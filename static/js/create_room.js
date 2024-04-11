@@ -8,7 +8,7 @@ document.getElementById('createRoomBtn').addEventListener('click', function() {
                 // 여기에 CSRF 토큰 추가 필요
             },
             body: JSON.stringify({
-                host_id: 1,
+                host_id: 1, // 로그인한 사용자의 id로 변경해야합니다.
                 room_name: roomName
             })
         })
