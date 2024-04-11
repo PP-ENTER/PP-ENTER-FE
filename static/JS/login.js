@@ -1,6 +1,7 @@
 const loginForm = document.getElementById('login-form');
 const usernameInput = document.getElementById('username');
 const passwordInput = document.getElementById('password');
+const signupLink = document.getElementById('signup-link');
 
 loginForm.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -38,6 +39,12 @@ loginForm.addEventListener('submit', async (event) => {
     showModal('네트워크 오류가 발생했습니다.');
   }
 });
+
+// 회원가입 링크 클릭 이벤트 리스너
+signupLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.location.href = 'accounts/register'; // 회원가입 페이지 URL
+  });
 
 // 모달을 표시하는 함수
 function showModal(message) {
