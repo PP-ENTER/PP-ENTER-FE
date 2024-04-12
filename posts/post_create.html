@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PP&ENTER</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="mx-10 p-4 border-b-4 border-b-custom-whiteblue">
+        <div class="container mx-auto">
+            <div class="header flex justify-between items-center p-4">
+                <div class="logo">
+                    <a href="post_detail.html" class="text-xl font-bold">
+                        <img src="\img\img_logo.png" alt="PP&ENTER Logo" class="h-20">
+                    </a>
+                </div>
+
+
+                <nav class="navigation">
+                    <ul class="flex space-x-4">
+                        <li><a href="profile.html" class="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded">프로필</a></li>
+                        <li><a href="logout.html" class="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded">로그아웃</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto">
+        <section class="content p-4">
+            <div class="mb-4">
+                <label for="title" class="block text-gray-700 font-bold mb-2">제목</label>
+                <input type="text" id="title" name="title" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="content" class="block text-gray-700 font-bold mb-2">내용</label>
+                <textarea id="content" name="content" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="photo" class="block text-gray-700 font-bold mb-2">사진추가</label>
+                <input type="file" id="photo" name="photo" class="w-full px-3 py-2 bg-white border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="tag" class="block text-gray-700 font-bold mb-2">태그</label>
+                <input type="text" id="tag" name="tag" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="flex space-x-4">
+                <button type="submit" class="bg-yellow-400 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">게시하기</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer p-4 text-center">
+        <p class="text-gray-500">&copy; 2024 PP&amp;ENTER. All rights reserved.</p>
+    </footer>
+    
+    <script src="post_create.js"></script>
+</body>
+</html>
