@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PP&ENTER</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+    <div class="flex-grow flex justify-center items-center">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-xl ">
+            <div class="flex flex-col items-center mb-8">
+                <div class="rounded-lg overflow-hidden">
+                    <img src="media/img/img_logo.png" alt="logo Image" class="h-20 mr-4 mb-4" >
+                </div>
+            <form id="signup-form" class="w-full max-w-xg mx-auto mt-8 mb-4 bg-gray-100">
+                    <section class="flex flex-col items-center">
+                        <div class="mb-4 w-full max-w-md flex items-center mt-8">
+                            <label class="w-1/5 text-gray-700 font-bold mr-2 mt-8" for="username">아이디</label>
+                            <input type="text" id="username" placeholder="아이디를 입력하세요" class="w-4/5 p-2 border rounded bg-white-100">
+                        </div>
+                        <div class="mb-4 w-full max-w-md flex items-center">
+                            <label class="w-1/5 text-gray-700 font-bold mr-2" for="password">비밀번호</label>
+                            <input type="password" id="password" placeholder="비밀번호를 입력하세요" class="w-4/5 p-2 border rounded bg-white-100">
+                        </div>
+                        <div class="mb-4 w-full max-w-md flex items-center justify-center">
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" id="login-button">
+                                로그인
+                            </button>
+                        </div>
+                    </section>
+                </form>
+                <div class="flex justify-center">
+                    <button id="signup-link" class="bg-yellow-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4">
+                        회원가입
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 로그인 실패 시 표시될 모달 -->
+<div id="errorModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+    <!-- 모달 내용 생략 -->
+ <!-- 모달 패널 -->
+ <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+      <div class="sm:flex sm:items-start">
+        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+          <!-- 경고 아이콘 -->
+          <svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h1m0-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+          <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-headline">
+            로그인 실패
+          </h3>
+          <div class="mt-2">
+            <p class="text-sm text-gray-500">
+              사용자명 또는 비밀번호가 올바르지 않습니다. 다시 시도해주세요.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+      <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="closeModal()">
+        닫기
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+    <footer class="w-full bg-white py-4 mt-auto">
+        <div class="container flex justify-center mx-auto text-center text-gray ">
+            &copy; 2024 PP&ENTER. All rights reserved.
+        </div>
+    </footer>
+    <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PP&ENTER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/tailwind_custom.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+
+  <body>
+    <header class="mx-10 p-4 border-b-4 border-b-custom-whiteblue">
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- 로고와 기타 내용 -->
+        <div>
+          <a href=""><img src="../static/assets/img/img_logo.png" alt="logo" width="150" height="150"></a>
+        </div>
+
+        <div class="flex items-center" style="max-width: 50%; width: 100%; margin: auto;">
+          <form id="chat-form" class="flex w-full">
+            <input id="search-input" type="search" class="flex-1 px-4 py-2 border-2 rounded-lg" placeholder="메인 검색창에 작성됩니다.">
+            <button id="search-button" class="ml-3 px-8 border-2 rounded-lg bg-custom-whiteblue hover:bg-blue-600 text-white">
+              검색
+            </button>
+
+          </form>
+        </div>
+
+        <!-- 네비게이션 메뉴 -->
+        <div>
+          <nav class="flex items-center">
+            <ul class="flex space-x-4 mr-6">
+              <li>
+                <a href="#" class="text-gray-600 hover:text-black hover:font-bold">프로필</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-600 hover:text-black hover:font-bold">로그아웃</a>
+              </li>
+            </ul>
+            <!-- 알림 아이콘 -->
+            <div class="cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-yellow-500 bi bi-bell-fill" viewbox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+              </svg>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="flex justify-between my-4 mx-10 space-x-4" style="height: 50vh">
+        <div class="flex justify-between my-4  space-x-4 w-full">
+          <!-- Carousel for responsive section -->
+          <div class="image-slider relative border border-gray-300 rounded-lg w-2/3" style="height: 380px; overflow: hidden;">
+            <button id="prevBtn" class="ml-5 absolute left-0 top-1/2 transform -translate-y-1/2 text-black z-10" style="display: block">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bg-white bi bi-caret-left-square" viewbox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                <path d="M10.205 12.456A.5.5 0 0 0 10.5 12V4a.5.5 0 0 0-.832-.374l-4.5 4a.5.5 0 0 0 0 .748l4.5 4a.5.5 0 0 0 .537.082"/>
+              </svg>
+              <!-- 왼쪽 화살표 아이콘 -->
+            </button>
+            <div class="h-full">
+              <img src="../static/assets/img/img_slider1.png" class="image-slide" style="width: 100%; height: 100%; object-fit: cover;">
+              <img src="../static/assets/img/img_slider2.png" class="image-slide" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+              <img src="../static/assets/img/img_slider3.png" class="image-slide" style="width: 100%; height: 100%; object-fit: cover; display: none;">
+            </div>
+            <button id="nextBtn" class="mr-5 absolute right-0 top-1/2 transform -translate-y-1/2 text-black z-10" style="display: block">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bg-white bi bi-caret-right-square" viewbox="0 0 16 16">
+                <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                <path d="M5.795 12.456A.5.5 0 0 1 5.5 12V4a.5.5 0 0 1 .832-.374l4.5 4a.5.5 0 0 1 0 .748l-4.5 4a.5.5 0 0 1-.537.082"/>
+              </svg>
+              <!-- 오른쪽 화살표 아이콘 -->
+            </button>
+          </div>
+
+          <!-- Profile card -->
+          <div class="bg-white border border-gray-300 rounded-lg shadow-lg flex flex-col justify-between p-6" style="height: 380px; flex: 2.5;">
+            <!-- {% if user.is_authenticated %} <div class="flex justify-end"> <a href="{% url 'post_create' %}"> <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="text-gray-500 hover:text-gray-900 bi bi-pencil-square cursor-pointer" viewbox="0 0 16 16"> <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/> <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/> </svg> </a> </div> <div class="flex flex-col items-center justify-center flex-grow"> <img src="{{ user.profile_image.url }}" alt="Profile Picture" class="h-24 w-24 rounded-full mb-4 border border-gray-500"> <h3 class="text-center text-gray-900 text-xl mb-4">{{user.username}}님 반갑습니다.</h3> <p class="text-center text-gray-600 text-base mb-4">같이 여행을 계획해요!</p> </div> <div class="flex justify-center space-x-4"> <div class="flex-1 text-center"> <a href="{% url 'user_profile' %}" class="bg-blue-400 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block w-full"> 프로필보기 </a> </div> <div class="flex-1 text-center"> <form action="{% url 'user_logout' %}" method="post"> {% csrf_token %} <input type="submit" value="로그아웃" class="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block w-full cursor-pointer"> </form> </div> -->
+            <div class="flex flex-col items-center justify-center flex-grow">
+              <img src="../static/assets/img/img_profile.jpg" alt="Profile Picture" class="h-24 w-24 rounded-full mb-4 border border-gray-500">
+              <h3 class="text-center text-gray-900 text-xl mb-4">다양한 사람들과</h3>
+              <p class="text-center text-gray-600 text-base mb-4">소통하고 기록을 남겨보세요</p>
+            </div>
+            <div class="flex justify-center space-x-4">
+
+              <div class="flex-1 text-center">
+                <a href="{% url 'user_login' %}" class="bg-blue-400 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block w-full">
+                  게시글 작성
+                </a>
+              </div>
+
+              <div class="flex-1 text-center">
+                <button id="createRoomBtn" class="bg-blue-600 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline block w-full">
+                  방 만들기
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class='border-b border border-gray-300 mb-5 mt-10 mx-10'></div>
+
+      <div class="flex justify-between my-4 mx-10 space-x-4" style="height: 58vh">
+        <div class="my-4 mx-10 w-full overflow-hidden">
+          <div class="relative mb-10 w-full">
+            <div class="flex items-center justify-between mb-5">
+              <p class='text-gray-900 text-xl font-semibold'>전체 내역</p>
+              <a href="#" id="moreLink" class="text-sm text-black font-bold py-2 px-3">
+                더보기
+              </a>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <button id="main-slideLeft" class="absolute left-0 z-10 bg-custom-whiteblue rounded-full text-white p-4">
+                &lt;
+              </button>
+
+              <div id="cardSlider" class="flex transition-transform duration-300 ease-in-out ml-12 mr-12"></div>
+
+              <button id="main-slideRight" class="absolute right-0 z-10 bg-custom-whiteblue rounded-full text-white p-4">
+                &gt;
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='border-b border border-gray-300 mb-5 mt-10 mx-10'></div>
+
+      <div class="flex justify-between my-4 mx-10 space-x-4" style="height: 58vh">
+        <div class="my-4 mx-10 w-full overflow-hidden">
+          <div class="relative mb-10 w-full">
+            <div class="flex items-center justify-between mb-5">
+              <p class='text-gray-900 text-xl font-semibold'>나의 기록</p>
+              <a href="#" class="text-sm text-black font-bold py-2 px-3">
+                더보기
+              </a>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <button id="main-slideLeft1" class="absolute left-0 z-10 bg-custom-whiteblue rounded-full text-white p-4">
+                &lt;
+              </button>
+
+              <div id="cardSlider1" class="flex transition-transform duration-300 ease-in-out ml-12 mr-12">
+                <!-- Cards -->
+                <div class="w-64 h-80 mr-4 bg-white rounded-lg border border-gray-300" style="min-width: 16rem;">
+                  <img class="w-full h-48 rounded-t-lg object-cover" src="https://via.placeholder.com/256x128" alt="Placeholder">
+                  <div class="p-4">
+                    <h5 class="text-lg font-semibold mb-2">Card Title</h5>
+                    <p class="text-gray-600 text-sm">Card description or content goes here.</p>
+                  </div>
+                </div>
+                <!-- Repeat for more cards -->
+
+              </div>
+
+              <button id="main-slideRight1" class="absolute right-0 z-10 bg-custom-whiteblue rounded-full text-white p-4">
+                &gt;
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Tailwind CSS를 사용한 푸터 예시 -->
+  <footer class="bg-custom-whiteblue text-white py-8">
+    <div class="max-w-screen-xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <h4 class="text-lg font-semibold">PP&Enter Company</h4>
+        <p class="mt-2">우리는 당신의 특별한 순간을</p>
+        <p class="mt-2">기억하겠습니다.</p>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold">Quick Links</h4>
+        <ul class="mt-2">
+          <li>
+            <a href="#" class="hover:text-gray-300">Home</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-gray-300">Destinations</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-gray-300">Services</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-gray-300">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold">Social Media</h4>
+        <div class="flex mt-2 space-x-4">
+          <a href="#" class="hover:text-gray-300">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="hover:text-gray-300">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="hover:text-gray-300">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold">Contact Info</h4>
+        <p class="mt-2">Email: info@company.com</p>
+        <p>Phone: +82 10-1234-5678</p>
+      </div>
+    </div>
+    <div class="text-center mt-8">
+      <p>Copyright © 2024 Company Name. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../static/js/slider-img.js"></script>
+  <script src="../static/js/create_room.js"></script>
+  <script src="../static/js/create_card.js"></script>
+  <script src="../static/js/link.js"></script>
+  <script>
+    const searchInput = document.getElementById('search-input'); // 검색어 입력란
+    const searchButton = document.getElementById('search-button'); // 검색 버튼
+    const searchResultsContainer = document.getElementById('search-results'); // 검색 결과를 표시할 컨테이너
+
+    // 검색 버튼 클릭 이벤트 리스너 추가
+    searchButton.addEventListener('click', () => {
+      const query = searchInput
+        .value
+        .trim(); // 입력된 검색어
+
+      // API 엔드포인트 URL
+      const url = `http://localhost:8000/posts/posts_main_list_search/${query}/`;
+
+
+      // fetch를 사용하여 API에 GET 요청
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json(); // JSON 형식으로 응답 받음
+        })
+        .then(data => {
+          const container = document.getElementById('cardSlider');
+          container.innerHTML = '';
+          data.forEach(post => {
+            const card = createCardElement(post);
+            container.appendChild(card);
+          });
+          initializeSlider();
+        })
+        .catch(error => {
+          console.error('Fetching error:', error);
+        });
+    });
+
+    function createCardElement(post) {
+      // 카드 컨테이너 생성
+      const card = document.createElement('div');
+      card.className = 'w-64 h-80 mr-4 bg-white rounded-lg border border-gray-300';
+      card.style.minWidth = '16rem';
+
+      // 이미지 생성
+      const image = document.createElement('img');
+      image.className = 'w-full h-48 rounded-t-lg object-cover';
+      image.src = post.image_url || 'https://via.placeholder.com/256x128'; // 이미지 URL이 없는 경우 기본값
+      image.alt = 'Post Image';
+      card.appendChild(image);
+
+      // 본문 컨테이너 생성
+      const body = document.createElement('div');
+      body.className = 'p-4';
+      card.appendChild(body);
+
+      // 제목 생성
+      const title = document.createElement('h5');
+      title.className = 'text-lg font-semibold mb-2';
+      title.textContent = post.photo_name || 'Card Title'; // 제목이 없는 경우 기본값
+      body.appendChild(title);
+
+      // 조회수 생성
+      const count = document.createElement('p');
+      count.className = 'text-gray-600 text-sm';
+      count.textContent = `조회수: ${post.count}`;
+      body.appendChild(count);
+
+      // 생성일자 생성
+      const createdAt = document.createElement('p');
+      createdAt.className = 'text-gray-600 text-sm';
+      createdAt.textContent = `생성일자: ${new Date(post.created_at).toLocaleDateString()}`;
+      body.appendChild(createdAt);
+
+      // 좋아요 및 태그 정보는 주석 처리된 부분에 따라 추가할 수 있습니다.
+      // 예시 코드에서는 해당 부분을 생략했습니다.
+      // 해당 정보를 추가하려면, 각각에 대한 정보를 post 객체에서 추출하여
+      // 생성된 요소에 클래스를 할당하고 card 또는 body에 appendChild 메서드를 사용하여 추가합니다.
+
+      return card;
+    }
+
+    function initializeSlider() {
+      let currentIndex = 0;
+      const slider = document.getElementById('cardSlider');
+      const cards = slider.children;
+      const totalCards = cards.length;
+      // 각 카드의 너비를 계산 (첫 번째 카드 기준)
+      const cardWidth = cards[0]
+        ? cards[0].offsetWidth + 16
+        : 0; // 마진 포함
+
+      document
+        .getElementById('main-slideLeft')
+        .addEventListener('click', function () {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateSliderPosition();
+          }
+        });
+
+      document
+        .getElementById('main-slideRight')
+        .addEventListener('click', function () {
+          if (currentIndex < totalCards - 1) {
+            currentIndex++;
+            updateSliderPosition();
+          }
+        });
+
+      function updateSliderPosition() {
+        const newTranslateX = -(cardWidth * currentIndex);
+        slider.style.transform = `translateX(${newTranslateX}px)`;
+      }
+    }
+  </script>
+</body>
+
+</html>

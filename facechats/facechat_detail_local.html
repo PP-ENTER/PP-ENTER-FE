@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Chat Example</title>
+</head>
+<body>
+    <h2>Local Video Stream</h2>
+    <div id="videoContainer">
+        <video id="localVideo" autoplay></video>
+    </div>
+    <script>
+        // URL에서 방 ID 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomId = urlParams.get('id'); // 'id' 쿼리 파라미터
+
+        // WebSocket 연결
+        const socket = new WebSocket(`ws://localhost:8000/ws/facechats/${roomId}/`);
+
+        socket.onopen = function(e) {
+            console.log("Connection established!");
+        };
+
+        socket.onmessage = function(event) {
+            console.log("Message from server ", event.data);
+        };
+
+        socket.onerror = function(error) {
+            console.log(`WebSocket error: ${error.message}`);
+        };
+
+        // 비디오 스트림 캡처 및 표시
+        if (navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(stream => {
+                    const localVideo = document.getElementById('localVideo');
+                    if (localVideo) {
+                        localVideo.srcObject = stream;
+                    }
+                }).catch(error => {
+                    console.error('Cannot access media devices', error);
+                });
+        }
+    </script>
+</body>
+</html>

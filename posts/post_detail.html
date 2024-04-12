@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PP&ENTER</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/tailwind_custom.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+
+  <body>
+    <header class="mx-10 p-4 border-b-4 border-b-custom-whiteblue">
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- 로고와 기타 내용 -->
+        <div>
+          <a href=""><img src="../static/assets/img/img_logo.png" alt="logo" width="150" height="150"></a>
+        </div>
+
+        <div class="flex items-center" style="max-width: 50%; width: 100%; margin: auto;">
+          <form id="chat-form" class="flex w-full">
+            <input id="search-input" type="search" class="flex-1 px-4 py-2 border-2 rounded-lg" placeholder="메인 검색창에 작성됩니다.">
+            <button id = "search-button" class="ml-3 px-8 border-2 rounded-lg bg-custom-whiteblue hover:bg-blue-600 text-white">
+              검색
+            </button>
+
+          </form>
+        </div>
+
+        <!-- 네비게이션 메뉴 -->
+        <div>
+          <nav class="flex items-center">
+            <ul class="flex space-x-4 mr-6">
+              <li>
+                <a href="#" class="text-gray-600 hover:text-black hover:font-bold">프로필</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-600 hover:text-black hover:font-bold">로그아웃</a>
+              </li>
+            </ul>
+            <!-- 알림 아이콘 -->
+            <div class="cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-yellow-500 bi bi-bell-fill" viewbox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+              </svg>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+
+      <div class="max-w-screen-xl mx-auto py-6">
+        <div class="flex justify-between items-center mb-4">
+          <div>
+            <button class="bg-gray-200 text-gray-700 rounded-full py-2 px-4 mx-1 focus:outline-none">최신순</button>
+            <button class="bg-gray-200 text-gray-700 rounded-full py-2 px-4 mx-1 focus:outline-none">조회순</button>
+            <button class="bg-gray-200 text-gray-700 rounded-full py-2 px-4 mx-1 focus:outline-none">즐겨찾기</button>
+          </div>
+        </div>
+        <div id="cardSlider" class="grid grid-cols-4 gap-4">
+          <!-- 카드 반복 -->
+          
+          <!-- 더 많은 카드를 위한 HTML을 여기에 반복하세요 -->
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Tailwind CSS를 사용한 푸터 예시 -->
+  <footer class="bg-custom-whiteblue text-white py-8">
+    <div class="max-w-screen-xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div>
+        <h4 class="text-lg font-semibold">PP&Enter Company</h4>
+        <p class="mt-2">우리는 당신의 특별한 순간을</p>
+        <p class="mt-2">기억하겠습니다.</p>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold">Quick Links</h4>
+        <ul class="mt-2">
+          <li>
+            <a href="#" class="hover:text-gray-300">Home</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-gray-300">Destinations</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-gray-300">Services</a>
+          </li>
+          <li>
+            <a href="#" class="hover:text-gray-300">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold">Social Media</h4>
+        <div class="flex mt-2 space-x-4">
+          <a href="#" class="hover:text-gray-300">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="hover:text-gray-300">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="hover:text-gray-300">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold">Contact Info</h4>
+        <p class="mt-2">Email: info@company.com</p>
+        <p>Phone: +82 10-1234-5678</p>
+      </div>
+    </div>
+    <div class="text-center mt-8">
+      <p>Copyright © 2024 Company Name. All rights reserved.</p>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log(1)
+      const userId = getUserIdFromUrl();
+      if (userId) {
+        fetchUserData(userId);
+      } else {
+        console.error('UserId is not specified in the URL');
+      }
+    });
+
+    function getUserIdFromUrl() {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const userId = urlParams.get('userId');
+      return userId;
+    }
+
+    function fetchUserData(userId) {
+      fetch(`http://localhost:8000/posts/posts_detail_list/${userId}`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          const container = document.getElementById('cardSlider');
+          data.forEach(post => {
+            const card = createCardElement(post);
+            container.appendChild(card);
+          });
+        })
+        .catch(error => console.error('Fetching error:', error));
+    }
+
+    function createCardElement(post) {
+      // 카드 컨테이너 생성
+      const card = document.createElement('div');
+      card.className = 'w-64 h-80 mr-4 bg-white rounded-lg border border-gray-300';
+      card.style.minWidth = '16rem';
+
+      // 이미지 생성
+      const image = document.createElement('img');
+      image.className = 'w-full h-48 rounded-t-lg object-cover';
+      image.src = post.image_url || 'https://via.placeholder.com/256x128'; // 이미지 URL이 없는 경우 기본값
+      image.alt = 'Post Image';
+      card.appendChild(image);
+
+      // 본문 컨테이너 생성
+      const body = document.createElement('div');
+      body.className = 'p-4';
+      card.appendChild(body);
+
+      // 제목 생성
+      const title = document.createElement('h5');
+      title.className = 'text-lg font-semibold mb-2';
+      title.textContent = post.photo_name || 'Card Title'; // 제목이 없는 경우 기본값
+      body.appendChild(title);
+
+      // 조회수 생성
+      const count = document.createElement('p');
+      count.className = 'text-gray-600 text-sm';
+      count.textContent = `조회수: ${post.count}`;
+      body.appendChild(count);
+
+      // 생성일자 생성
+      const createdAt = document.createElement('p');
+      createdAt.className = 'text-gray-600 text-sm';
+      createdAt.textContent = `생성일자: ${new Date(post.created_at).toLocaleDateString()}`;
+      body.appendChild(createdAt);
+
+      // 좋아요 및 태그 정보는 주석 처리된 부분에 따라 추가할 수 있습니다.
+      // 예시 코드에서는 해당 부분을 생략했습니다.
+      // 해당 정보를 추가하려면, 각각에 대한 정보를 post 객체에서 추출하여
+      // 생성된 요소에 클래스를 할당하고 card 또는 body에 appendChild 메서드를 사용하여 추가합니다.
+
+      return card;
+    }
+
+
+    const searchInput = document.getElementById('search-input'); // 검색어 입력란
+    const searchButton = document.getElementById('search-button'); // 검색 버튼
+
+    // 검색 버튼 클릭 이벤트 리스너 추가
+    searchButton.addEventListener('click', () => {
+      event.preventDefault(); // 폼의 기본 제출 동작 방지
+      const query = searchInput
+        .value
+        .trim(); // 입력된 검색어
+
+      // API 엔드포인트 URL
+      const url = `http://localhost:8000/posts/posts_detail_list_search/${query}/`;
+
+
+      // fetch를 사용하여 API에 GET 요청
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json(); // JSON 형식으로 응답 받음
+        })
+        .then(data => {
+          const container = document.getElementById('cardSlider');
+          container.innerHTML = '';
+          data.forEach(post => {
+            const card = createCardElement(post);
+            container.appendChild(card);
+          });
+        })
+        .catch(error => {
+          console.error('Fetching error:', error);
+        });
+    });
+  </script>
+</body>
+
+</html>
