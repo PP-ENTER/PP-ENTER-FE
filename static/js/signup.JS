@@ -8,11 +8,13 @@ function registerUser() {
       nickname: document.getElementById('nickname').value,
       password: document.getElementById('password').value,
       password2: document.getElementById('password2').value,
+      last_name: document.getElementById('last_name').value,
+      first_name: document.getElementById('first_name').value,
       // Include other fields as necessary
     };
   
     // Send a POST request to the server
-    fetch('http://127.0.0.1:8000//accounts/register/', {
+    fetch('http://127.0.0.1:8000/accounts/register/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,15 +34,18 @@ function registerUser() {
     .then(data => {
       console.log(data);
       // Handle success, maybe redirect to the login page or show a success message
+      window.location.href = '../../accounts/login.html'; // Redirect to login page. Adjust the URL as necessary.
     })
     .catch(error => {
-      console.error('There was a problem with the fetch operation:', error);
-      // Handle errors, show user feedback
+        console.error('There was a problem with the fetch operation:', error);
+        // Display a user-friendly error message
+        displayErrorMessage("We're experiencing some technical difficulties. Please try again later.");
     });
+      
   }
   
   // Add event listener for your form submission
-  document.getElementById('yourFormId').addEventListener('submit', function(e) {
+  document.getElementById('signup-form').addEventListener('submit', function(e) {
     e.preventDefault();  // Prevent the default form submission
     registerUser();      // Call the function to register the user
   });
@@ -57,3 +62,12 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = '../../accounts/login.html';
     });
 });
+
+function displayErrorMessage(message) {
+    // Assuming there's an element with the ID 'error-message' in your HTML
+    const errorMessageElement = document.getElementById('error-message');
+    if (errorMessageElement) {
+      errorMessageElement.textContent = message;
+      errorMessageElement.style.display = 'block'; // Make sure it's visible
+    }
+  }

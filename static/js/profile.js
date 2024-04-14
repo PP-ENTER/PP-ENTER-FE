@@ -88,4 +88,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // 페이지 로드 시 프로필 정보와 즐겨찾기한 영상통화방 목록을 가져옴
     fetchUserProfile();
     fetchFavoriteRooms();
-  });
