@@ -34,6 +34,7 @@ function registerUser() {
     .then(data => {
       console.log(data);
       // Handle success, maybe redirect to the login page or show a success message
+      window.location.href = '../../accounts/login.html'; // Redirect to login page. Adjust the URL as necessary.
     })
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
