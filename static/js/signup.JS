@@ -1,36 +1,59 @@
 const signupForm = document.getElementById('signup-form');
 const loginLink = document.getElementById('login-link');
 
-signupForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+function registerUser() {
+    // Collect data from the form
+    const userData = {
+      username: document.getElementById('username').value,
+      nickname: document.getElementById('nickname').value,
+      password: document.getElementById('password').value,
+      password2: document.getElementById('password2').value,
+      // Include other fields as necessary
+    };
+  
+    // Send a POST request to the server
+    fetch('http://127.0.0.1:8000//accounts/register/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // If using token-based authentication, you might need to add your token here
+        // 'Authorization': 'Bearer YOUR_TOKEN_HERE',
+        // If CSRF token is needed, you'll need to include that as well
+        // 'X-CSRFToken': 'YOUR_CSRF_TOKEN_HERE'
+      },
+      body: JSON.stringify(userData)  // Convert the user data to a JSON string
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      console.log(data);
+      // Handle success, maybe redirect to the login page or show a success message
+    })
+    .catch(error => {
+      console.error('There was a problem with the fetch operation:', error);
+      // Handle errors, show user feedback
+    });
+  }
+  
+  // Add event listener for your form submission
+  document.getElementById('yourFormId').addEventListener('submit', function(e) {
+    e.preventDefault();  // Prevent the default form submission
+    registerUser();      // Call the function to register the user
+  });
 
-    const username = document.getElementById('username').value;
-    const nickname = document.getElementById('nickname').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const password2 = document.getElementById('password2').value;
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the login link element by its ID
+    var loginLink = document.getElementById('login-link');
 
-    try {
-        const response = await fetch('http://127.0.0.1:8000/register/', { // 지금은 제 로컬 주소로 되어 있습니다.
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, nickname, email, password, password2 })
-        });
+    // Add a click event listener to the login link
+    loginLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default anchor tag behavior
 
-        if (response.ok) {
-            window.location.href = '/post_list.html';
-        } else {
-            const data = await response.json();
-            alert(data.message || '정보가 이미 존재합니다.');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-    }
-});
-
-loginLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.location.href = '/login.html';
+        // Navigate to the login page
+        window.location.href = '../../accounts/login.html';
+    });
 });
