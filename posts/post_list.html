@@ -35,7 +35,7 @@
           <nav class="flex items-center">
             <ul class="flex space-x-4 mr-6">
               <li>
-                <a href="#" class="text-gray-600 hover:text-black hover:font-bold">프로필</a>
+                <a href="#" id="profile_id" class="text-gray-600 hover:text-black hover:font-bold">프로필</a>
               </li>
               <li>
                 <a href="#" id="logoutButton" class="text-gray-600 hover:text-black hover:font-bold">로그아웃</a>
@@ -230,6 +230,11 @@
     const searchInput = document.getElementById('search-input'); // 검색어 입력란
     const searchButton = document.getElementById('search-button'); // 검색 버튼
     const searchResultsContainer = document.getElementById('search-results'); // 검색 결과를 표시할 컨테이너
+
+    //프로필 ID 가져오기
+    document.getElementById('profile_id').addEventListener('click', function() {
+    window.location.href = `/accounts/profile.html?userId=${1}`;
+    });
 
     document.addEventListener('DOMContentLoaded', function () {
       // 로그아웃 버튼 클릭 이벤트 핸들러
