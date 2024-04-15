@@ -1,11 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
+window.onload = function() {
   document.getElementById('postForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const title = document.getElementById('title').value;
     const content = document.getElementById('content').value;
     const photo = document.getElementById('photo').files[0];
-    const tags = document.getElementById('tags').value.split(',').map(tag => tag.trim());
+    const tags = document.getElementById('tag').value.split(',').map(tag => tag.trim());
 
     const formData = new FormData();
     formData.append('title', title);
@@ -61,4 +61,4 @@ document.addEventListener('DOMContentLoaded', function() {
       console.error('Error:', error);
     });
   });
-});
+};
