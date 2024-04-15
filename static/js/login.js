@@ -36,7 +36,8 @@ loginForm.addEventListener('submit', async (event) => {
       console.log('로그인 성공:', data);
 
       // 사용자 토큰을 로컬 스토리지에 저장
-      localStorage.setItem('userToken', data.token);
+      localStorage.setItem('accessToken', data.access);
+      alert(data.access);
 
       // 예시: 사용자를 홈페이지로 리디렉션
       window.location.href = '../posts/post_list.html';
