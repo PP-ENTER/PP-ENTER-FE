@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
       alert("User cancelled the login.");
     } else {
       let ws_scheme = window.location.protocol == "https:" ? "wss://" : "ws://";
-      const serverHost = '127.0.0.1:8000';
+      // const serverHost = '127.0.0.1:8000';
+      const serverHost = '43.200.108.45';
       
       callSocket = new WebSocket(
           ws_scheme

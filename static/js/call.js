@@ -63,11 +63,12 @@ let socket;
 let callSocket;
 function connectSocket() {
     let ws_scheme = window.location.protocol == "https:" ? "wss://" : "ws://";
-    const serverHost = '127.0.0.1:8000';
-    
+    // const serverHost = '127.0.0.1:8000';
+    const serverHost = '43.200.108.45'
     callSocket = new WebSocket(
         ws_scheme
-        + serverHost
+        // + serverHost
+        + window.location.host
         + '/ws/call/'
     );
     console.log(  ws_scheme
