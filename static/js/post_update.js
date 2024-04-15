@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // 게시물 데이터 가져오기
 function fetchPostData() {
     const postId = getPostIdFromUrl();
-    fetch(`http://localhost:8000/posts/${postId}/`)
+    fetch(`http://43.200.108.45/posts/${postId}/`)
         .then(response => response.json())
         .then(data => {
             document.getElementById('title').value = data.title;
@@ -44,7 +44,7 @@ function fetchPostData() {
 
 // 게시물 수정 요청 보내기
 function updatePost(postId, formData) {
-    fetch(`http://localhost:8000/posts/${postId}/`, {
+    fetch(`http://43.200.108.45/posts/${postId}/`, {
         method: 'PUT',
         body: formData
     })
