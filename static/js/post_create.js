@@ -1,6 +1,7 @@
-window.addEventListener('load', function() {
-  const postForm = document.getElementById('postForm');
+document.addEventListener('DOMContentLoaded', function() {
 
+  const csrftoken = document.querySelector('[name=csrf-token]').content;
+  
   postForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const formData = new FormData();
@@ -9,6 +10,8 @@ window.addEventListener('load', function() {
     formData.append('content', document.getElementById('content').value);
 
     const token = localStorage.getItem('accessToken');  // 로그인 후 저장된 토큰을 사용합니다.
+  
+    formData.append('csrfmiddlewaretoken', csrfToken);
 
     fetch('http://127.0.0.1:8000/posts/create/', {
         method: 'POST',

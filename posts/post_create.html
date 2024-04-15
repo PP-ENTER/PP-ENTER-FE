@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PP&ENTER</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
@@ -31,6 +32,7 @@
     <main class="container mx-auto">
         <section class="content p-4">
           <form id="postForm">
+            
             <div class="mb-4">
               <label for="title" class="block text-gray-700 font-bold mb-2">제목</label>
               <input type="text" id="title" name="title" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
@@ -41,7 +43,7 @@
             </div>
             <div class="mb-4">
               <label for="photo" class="block text-gray-700 font-bold mb-2">사진추가</label>
-              <input type="file" id="photo" name="photo" class="w-full px-3 py-2 bg-white border border-gray-300 rounded focus:outline-none focus:border-blue-500">
+              <input type="file" id="photo_id" name="photo" class="w-full px-3 py-2 bg-white border border-gray-300 rounded focus:outline-none focus:border-blue-500">
             </div>
             <div class="mb-4">
               <label for="tag" class="block text-gray-700 font-bold mb-2">태그</label>
