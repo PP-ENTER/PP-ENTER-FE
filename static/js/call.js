@@ -67,8 +67,8 @@ function connectSocket() {
     const serverHost = '43.200.108.45'
     callSocket = new WebSocket(
         ws_scheme
-        // + serverHost
-        + window.location.host
+        + serverHost
+        // + window.location.host
         + '/ws/call/'
     );
     console.log(  ws_scheme

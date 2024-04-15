@@ -142,14 +142,19 @@
               
             </div> -->
           <!-- </div> -->
-          <div id="videos" class="" style="display: flex; justify-content: flex-end; align-items: center;">
-            <video id="localVideo"  autoplay="autoplay" muted="muted" playsinline="playsinline"></video>
-            <br>
-            <button class="flex-initial" style="padding: 10px 20px; margin-left: 1px; border: none; border-radius: 4px; background-color: #0AA0E1; color: white; cursor: pointer;">감정 표현</button>
+          <div id = "localVideoContainer">
+            <div id="videos" class="" style="display: flex; justify-content: flex-end; align-items: center;">
+              <video id="localVideo"  autoplay="autoplay" muted="muted" playsinline="playsinline"></video>
+              <br>
+              <button class="flex-initial" style="padding: 10px 20px; margin-left: 1px; border: none; border-radius: 4px; background-color: #0AA0E1; color: white; cursor: pointer;">감정 표현</button>
+              <button onclick="captureVideos()" class="flex-initial" style="padding: 10px 20px; margin-left: 1px; border: none; border-radius: 4px; background-color: #0AA0E1; color: white; cursor: pointer;">스크린샷</button>
+            </div>
           </div>
           
-          <div id="videos" class="">
-            <video id="remoteVideo" autoplay="autoplay" playsinline="playsinline"></video>
+          <div id="remoteVideoContainer">
+            <div id="videos" class="">
+              <video id="remoteVideo" autoplay="autoplay" playsinline="playsinline"></video>
+            </div>
           </div>
           
           <!-- 감정 표현 및 각종 기타 영역-->
@@ -301,9 +306,11 @@
       const roomName = "test"
       const wsStart = window.location.protocol === "https:" ? "wss://" : "ws://";
       // const serverHost = '127.0.0.1:8000';
+      const serverHost = '43.200.108.45'
       const chatSocket = new WebSocket(
             wsStart
-            + window.location.host
+            // + window.location.host
+            + serverHost
             + '/ws/chat/'
             + roomName
             + '/'
@@ -334,6 +341,38 @@
           messageInputDom.value = '';
       };
   </script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    function captureVideos() {
+      const localVideo = document.getElementById('localVideo');
+      const remoteVideo = document.getElementById('remoteVideo');
+    
+      // 비디오 사이즈 기반으로 캔버스 설정
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = localVideo.videoWidth + remoteVideo.videoWidth;
+      canvas.height = Math.max(localVideo.videoHeight, remoteVideo.videoHeight);
+    
+      // 로컬 비디오 캡처 및 캔버스에 그리기
+      ctx.drawImage(localVideo, 0, 0);
+    
+      // 원격 비디오 캡처 및 캔버스에 그리기
+      ctx.drawImage(remoteVideo, localVideo.videoWidth, 0); // 로컬 비디오 너비만큼 오른쪽에 그림
+    
+      // 캔버스를 이미지로 저장
+      canvas.toBlob(function(blob) {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'merged_video_capture.png';
+        link.click();
+        URL.revokeObjectURL(url);
+      }, 'image/png');
+    }
+    </script>
+    
   </body>
 
 </html>
