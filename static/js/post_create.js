@@ -3,44 +3,32 @@ window.addEventListener('load', function() {
 
   postForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    const title = document.getElementById('title').value;
-    const content = document.getElementById('content').value;
-    const photo = document.getElementById('photo').files[0];
-    const tags = document.getElementById('tag').value.split(',').map(tag => tag.trim());
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('content', content);
-    formData.append('photo', photo);
-    tags.forEach(tag => formData.append('tag', tag));
+    formData.append('image_url', document.getElementById('photo').files[0]);
+    formData.append('photo_name', document.getElementById('title').value);
+    formData.append('content', document.getElementById('content').value);
 
-    // 로컬 스토리지에서 access 토큰 가져오기
-    const accessToken = localStorage.getItem('accessToken');
+    const token = localStorage.getItem('accessToken');  // 로그인 후 저장된 토큰을 사용합니다.
 
-    fetch('http://43.200.108.45:8000/posts/create/', { 
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + accessToken
-      },
-      body: formData
+    fetch('http://127.0.0.1:8000/posts/create/', {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
+        body: formData
     })
     .then(response => {
-      // 서버에서 JSON 응답을 반환하는 경우
-      if (response.ok) {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         return response.json();
-      } else {
-        // 서버에서 HTML 문서 응답을 반환하는 경우
-        return response.text().then(text => {
-          throw new Error(`HTTP error! status: ${response.status}\n${text}`);
-        });
-      }
     })
     .then(data => {
-      // JSON 데이터 처리
-      const postId = data.id;
-      window.location.href = `/post_detail.html?postId=${postId}`;
+        console.log(data);
+        alert('Photo uploaded successfully!');
     })
     .catch(error => {
-      console.error('Error:', error);
+        console.error('Error:', error);
     });
-  });
+});
 });
