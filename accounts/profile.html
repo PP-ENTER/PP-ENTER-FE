@@ -46,15 +46,13 @@
   <script>
     // 세부내역 조회
     function profile_search(){
-      console.log(1)
-    const id = 1  // 예시로 1 
-    fetch(`http://localhost:8000/accounts/profile/${id}/`) // id로 검색합니다. -> model.id (pk)
+    const id = 1  
+    fetch(`http://43.200.108.45/accounts/profile/${id}/`) 
     .then(response => response.json())
     .then(data => {
         const img = document.getElementById("profile_img");
         const name = document.getElementById("profile_name");
         console.log(data.profile_image);
-        // img.src = data.profile_image
         name.innerText = data.nickname
     })
     .catch(error => console.error('Error fetching data:', error));
