@@ -16,7 +16,7 @@ window.onload = function() {
     // 로컬 스토리지에서 access 토큰 가져오기
     const accessToken = localStorage.getItem('accessToken');
 
-    fetch('http://localhost:8000/posts/post_create/', {
+    fetch('http://43.200.108.45/posts/post_create/', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + accessToken
@@ -27,7 +27,7 @@ window.onload = function() {
       if (response.status === 401) {
         // access 토큰이 만료되었을 경우 refresh 토큰을 사용하여 새로운 access 토큰 발급받기
         const refreshToken = localStorage.getItem('refreshToken');
-        return fetch('http://localhost:8000/token/refresh/', {
+        return fetch('http://43.200.108.45/token/refresh/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ window.onload = function() {
           // 새로 발급받은 access 토큰 저장
           localStorage.setItem('accessToken', data.access);
           // 새로운 access 토큰으로 다시 요청 보내기
-          return fetch('http://localhost:8000/posts/post_create/', {
+          return fetch('http://43.200.108.45/posts/post_create/', {
             method: 'POST',
             headers: {
               'Authorization': 'Bearer ' + data.access
