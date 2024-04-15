@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FaceChat Room</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/tailwind_custom.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+  </head>
+
+  <body>
+    <header class="mx-10 p-4 border-b-4 border-b-custom-whiteblue">
+      <div class="container mx-auto flex justify-between items-center">
+        <!-- 로고와 기타 내용 -->
+        <div>
+          <a href=""><img src="../static/assets/img/img_logo.png" alt="logo" width="150" height="150"></a>
+        </div>
+
+        <div class="flex justify-center items-center text-3xl font-bold text-center" style="max-width: 50%; width: 100%; margin: auto;">
+          언제 어디서나, 모든 순간을 함께 나누다
+        </div>
+
+        <!-- 네비게이션 메뉴 -->
+        <div>
+          <nav class="flex items-center">
+            <ul class="flex space-x-4 mr-6">
+              <li>
+                <a href="#" class="text-gray-600 hover:text-black hover:font-bold">프로필</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-600 hover:text-black hover:font-bold">로그아웃</a>
+              </li>
+            </ul>
+            <!-- 알림 아이콘 -->
+            <div class="cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-yellow-500 bi bi-bell-fill" viewbox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+              </svg>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+    
+    <main class="mt-5 mx-10" style="height: 100vh">
+      <!--유저 검색 영역 -->
+      <div>
+        <!-- to input username and login -->
+        <div style="display: flex; align-items: center;">
+          <div id="roomNumber">Loading room number...</div>
+          <div id="userInfo">
+            <div style="display: flex; flex-direction: column; align-items: center; width: 500px;">
+              <h1>안녕하세요,
+                <span id="nameHere"></span></h1>
+            </div>
+
+          </div>
+        </div>
+        
+        <div id="userName">
+          <div style="display: flex; align-items: center;">
+            <input placeholder="당신의 이름을 작성해주세요." style="text-align:center; width: 500px; height: 50px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px;" type="text" name="" id="userNameInput">
+            <button onclick="login()" class="actionButton" style="padding: 10px 20px; margin-left: 1px; border: none; border-radius: 4px; background-color: #0AA0E1; color: white; cursor: pointer;">입력</button>
+          </div>
+
+        </div>
+
+        <div id="call">
+          <div class="dialWrapper">
+            <!-- <input placeholder="상대방의 이름을 작성하세요." style="text-align:center; height: 50px; font-size: xx-large;" type="text" name="callName" id="callName"> -->
+            <div class="dialNumpadHWrapper">
+              <div class="dialNumber" style="display: flex; align-items: center;">
+                <input placeholder="상대방의 이름을 작성해주세요." style="text-align:center; width: 500px; height: 50px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px;" type="text" name="callName" id="callName">
+                <button onclick="call()" class="dialActionButton" style="padding: 10px 20px; margin-left: 1px; border: none; border-radius: 4px; background-color: #0AA0E1; color: white; cursor: pointer;">Call</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- to display current login user information -->
+
+        <!-- to show incommming call and accept -->
+        <div id="answer">
+          <div class="incomingWrapper">
+            <div class="itemWrapper">
+              <h2>
+                <span id="callerName"></span>
+                에게 전화가 왔습니다..!</h2>
+            </div>
+            <!-- <div class="itemWrapper"> <img id="profileImageA" style="padding: 30px; width: 140px; height: 140px;" src="../static/assets/img/profile.png" alt=""> </div> -->
+            <!-- <div class="itemWrapper"> <h2 style="line-height: 0px;"> <span id="callerName"></span></h2> </div> -->
+            <div class="itemWrapper" style="display: flex; flex-direction: row; margin-bottom: 20px;">
+              <!-- <button class="actionButton" onclick="answer()">Answer</button> -->
+              <button onclick="answer()" class="actionButton" style="padding: 10px 20px; margin-left: 1px; border: none; border-radius: 4px; background-color: #0AA0E1; color: white; cursor: pointer;">연결하기</button>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- to show outgoing call -->
+        <div id="calling">
+          <div class="incomingWrapper">
+            <div class="itemWrapper">
+              <h2>
+                <span id="otherUserNameCA"></span>
+                에게 전화를 연결중 입니다..</h2>
+            </div>
+            <!-- <div class="itemWrapper"> <img id="profileImageCA" style="padding: 30px; width: 140px; height: 140px;" src="../static/assets/img/profile.png" alt=""> </div> -->
+            <!-- <div class="itemWrapper"> <h3 style="line-height: 0px;"> <span id="otherUserNameCA"></span></h3> </div> -->
+          </div>
+        </div>
+
+        <!-- to show call in progress call -->
+        <div id="inCall">
+          <div class="incomingWrapper">
+            <div class="itemWrapper">
+              <h3>
+                <span id="otherUserNameC"></span>과/와 연결 되었습니다!</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <br>
+
+      <div class="flex justify-between" style="height: 75vh">
+        <!-- <div class="w-4/6"> -->
+          <!-- 영상 통화 영역 -->
+          <!-- <div id="videos" class="flex justify-between border border-gray-300" style="height: 55vh"> -->
+            <!-- 나 -->
+            <!-- <div class="border border-red-300 w-3/6"> -->
+              <!-- <video width="100px" id="localVideo" autoplay muted playsinline></video> -->
+            <!-- </div> -->
+            <!-- 상대 -->
+            <!-- <div id="remoteVideoDiv" class="border border-blue-300 w-3/6">
+              <video style="width: 500px;" id="remoteVideo" autoplay playsinline></video>
+              
+            </div> -->
+          <!-- </div> -->
+          <div id="videos" class="" style="display: flex; justify-content: flex-end; align-items: center;">
+            <video id="localVideo"  autoplay="autoplay" muted="muted" playsinline="playsinline"></video>
+            <br>
+            <button class="flex-initial" style="padding: 10px 20px; margin-left: 1px; border: none; border-radius: 4px; background-color: #0AA0E1; color: white; cursor: pointer;">감정 표현</button>
+          </div>
+          
+          <div id="videos" class="">
+            <video id="remoteVideo" autoplay="autoplay" playsinline="playsinline"></video>
+          </div>
+          
+          <!-- 감정 표현 및 각종 기타 영역-->
+          <div id = "div-chat" class="ml-5" style="height: 20vh">
+            <textarea id="chat-log" cols="100" rows="20" class="border border-gray-300"></textarea><br>
+            <input id="chat-message-input" type="text" size="100" class="border border-gray-300"><br>
+            <button id="chat-message-submit">Send<br>
+          </div>
+        </div>
+        <!-- <div class="mx-10 border border-red-300 w-2/6"> -->
+          
+        </div>
+      </div>
+    </main>
+
+    <!-- Tailwind CSS를 사용한 푸터 예시 -->
+    <footer class="bg-custom-whiteblue text-white py-8">
+      <div class="max-w-screen-xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <h4 class="text-lg font-semibold">PP&Enter Company</h4>
+          <p class="mt-2">우리는 당신의 특별한 순간을</p>
+          <p class="mt-2">기억하겠습니다.</p>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold">Quick Links</h4>
+          <ul class="mt-2">
+            <li>
+              <a href="#" class="hover:text-gray-300">Home</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-gray-300">Destinations</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-gray-300">Services</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-gray-300">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold">Social Media</h4>
+          <div class="flex mt-2 space-x-4">
+            <a href="#" class="hover:text-gray-300">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="hover:text-gray-300">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="hover:text-gray-300">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold">Contact Info</h4>
+          <p class="mt-2">Email: info@company.com</p>
+          <p>Phone: +82 10-1234-5678</p>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <p>Copyright © 2024 Company Name. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // URL에서 쿼리 파라미터 추출하는 함수
+        function getQueryParam(param) {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param);
+        }
+  
+        // 'roomId' 쿼리 파라미터의 값을 가져옵니다.
+        const roomId = getQueryParam('roomId');
+  
+        // roomId 값이 있으면 페이지에 출력, 없으면 메시지 출력
+        if (roomId) {
+          document
+            .getElementById('roomNumber')
+            .textContent = `Room ID: ${roomId}`;
+        } else {
+          document
+            .getElementById('roomNumber')
+            .textContent = 'Room ID not found.';
+        }
+      });
+    </script>
+    <script src="../static/js/call.js"></script>
+    <script>
+      document
+        .getElementById("call")
+        .style
+        .display = "none";
+      document
+        .getElementById("userInfo")
+        .style
+        .display = "none";
+      document
+        .getElementById("answer")
+        .style
+        .display = "none";
+      document
+        .getElementById("inCall")
+        .style
+        .display = "none";
+      document
+        .getElementById("calling")
+        .style
+        .display = "none";
+      document
+        .getElementById("videos")
+        .style
+        .display = "none";
+        document
+        .getElementById("div-chat")
+        .style
+        .display = "none";
+    </script>
+    <script>
+      function login() {
+        let userName = document
+          .getElementById("userNameInput")
+          .value;
+        myName = userName;
+        document
+          .getElementById("userName")
+          .style
+          .display = "none";
+        document
+          .getElementById("call")
+          .style
+          .display = "block";
+  
+        document
+          .getElementById("nameHere")
+          .innerHTML = userName;
+        document
+          .getElementById("userInfo")
+          .style
+          .display = "block";
+  
+        connectSocket();
+      }
+    </script>
+
+    <script>
+      // const roomName = JSON.parse(document.getElementById('room-name').textContent);
+      const roomName = "test"
+      const wsStart = window.location.protocol === "https:" ? "wss://" : "ws://";
+      // const serverHost = '127.0.0.1:8000';
+      const chatSocket = new WebSocket(
+            wsStart
+            + window.location.host
+            + '/ws/chat/'
+            + roomName
+            + '/'
+      );
+  console.log(window.location.host)
+      chatSocket.onmessage = function(e) {
+          const data = JSON.parse(e.data);
+          document.querySelector('#chat-log').value += (data.message + '\n');
+      };
+  
+      chatSocket.onclose = function(e) {
+          console.error('Chat socket closed unexpectedly');
+      };
+  
+      document.querySelector('#chat-message-input').focus();
+      document.querySelector('#chat-message-input').onkeyup = function(e) {
+          if (e.keyCode === 13) {  // enter, return
+              document.querySelector('#chat-message-submit').click();
+          }
+      };
+  
+      document.querySelector('#chat-message-submit').onclick = function(e) {
+          const messageInputDom = document.querySelector('#chat-message-input');
+          const message = messageInputDom.value;
+          chatSocket.send(JSON.stringify({
+              'message': message
+          }));
+          messageInputDom.value = '';
+      };
+  </script>
+  </body>
+
+</html>

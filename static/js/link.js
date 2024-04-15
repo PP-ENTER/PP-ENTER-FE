@@ -11,4 +11,41 @@ document.addEventListener('DOMContentLoaded', function () {
       // 사용자 ID를 포함하여 post_detail.html로 리다이렉트합니다.
       window.location.href = `post_detail.html?userId=${userId}`;
     });
+
+    // login()
   });
+
+  function login() {
+    // 사용자에게 이름을 입력받습니다.
+    var userName = prompt("Please enter your name:", "");
+  
+    // 사용자가 'Cancel'을 누르면 prompt()는 null을 반환합니다.
+    if (userName === null || userName === "") {
+      alert("User cancelled the login.");
+    } else {
+      let ws_scheme = window.location.protocol == "https:" ? "wss://" : "ws://";
+      const serverHost = '127.0.0.1:8000';
+      
+      callSocket = new WebSocket(
+          ws_scheme
+          + serverHost
+          + '/ws/call/'
+      );
+      console.log(  ws_scheme
+          + serverHost
+          + '/ws/call/')
+  
+  
+      // 로그인을 강제로 하는듯
+      callSocket.onopen = event =>{
+      //let's send myName to the socket
+          callSocket.send(JSON.stringify({
+              type: 'login',
+              data: {
+                  name: userName
+              }
+          }));
+      }
+  
+    }
+  }

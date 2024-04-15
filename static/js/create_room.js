@@ -1,7 +1,7 @@
 document.getElementById('createRoomBtn').addEventListener('click', function() {
     const roomName = prompt("방 이름을 입력하세요:");
     if (roomName) {
-        fetch('http://localhost:8000/facechats/create_facechat/', {
+        fetch('http://127.0.0.1:8000/facechats/create_facechat/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,7 +23,8 @@ document.getElementById('createRoomBtn').addEventListener('click', function() {
             // 서버 응답에서 방의 id를 추출
             const roomId = data.id;
             // 방 id를 URL에 포함시켜 리다이렉트
-            window.location.href = `/facechats/facechat.html?roomId=${roomId}`;
+            window.location.href = `/facechats/facechat_2.html?roomId=${roomId}`;
+            // window.location.href = `/facechats/facechat.html?roomId=${roomId}`;
         })
         .catch((error) => {
             console.error('Error:', error);

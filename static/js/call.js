@@ -75,6 +75,7 @@ function connectSocket() {
         + '/ws/call/')
 
 
+    // 로그인을 강제로 하는듯
     callSocket.onopen = event =>{
     //let's send myName to the socket
         callSocket.send(JSON.stringify({
@@ -366,6 +367,8 @@ function callProgress() {
     document.getElementById("videos").style.display = "block";
     document.getElementById("otherUserNameC").innerHTML = otherUser;
     document.getElementById("inCall").style.display = "block";
+    document.getElementById("div-chat").style.display = "block";
+
 
     callInProgress = true;
 }
