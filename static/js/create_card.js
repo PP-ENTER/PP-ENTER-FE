@@ -1,5 +1,5 @@
 function fetchPosts() {
-    fetch('http://127.0.0.1:8000/posts/posts_main_list') // 서버에서 게시글 리스트를 가져오는 URL로 변경하세요.
+    fetch('http://43.200.108.45/posts/posts_main_list') // 서버에서 게시글 리스트를 가져오는 URL로 변경하세요.
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok ' + response.statusText);

@@ -63,11 +63,12 @@ let socket;
 let callSocket;
 function connectSocket() {
     let ws_scheme = window.location.protocol == "https:" ? "wss://" : "ws://";
-    const serverHost = '127.0.0.1:8000';
-    
+    // const serverHost = '127.0.0.1:8000';
+    const serverHost = '43.200.108.45'
     callSocket = new WebSocket(
         ws_scheme
         + serverHost
+        // + window.location.host
         + '/ws/call/'
     );
     console.log(  ws_scheme
@@ -75,6 +76,7 @@ function connectSocket() {
         + '/ws/call/')
 
 
+    // 로그인을 강제로 하는듯
     callSocket.onopen = event =>{
     //let's send myName to the socket
         callSocket.send(JSON.stringify({
@@ -366,6 +368,8 @@ function callProgress() {
     document.getElementById("videos").style.display = "block";
     document.getElementById("otherUserNameC").innerHTML = otherUser;
     document.getElementById("inCall").style.display = "block";
+    document.getElementById("div-chat").style.display = "block";
+
 
     callInProgress = true;
 }
