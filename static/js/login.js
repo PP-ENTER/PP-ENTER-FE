@@ -20,8 +20,8 @@ loginForm.addEventListener('submit', async (event) => {
   const username = usernameInput.value;
   const password = passwordInput.value;
 
-  // const loginUrl = 'http://127.0.0.1:8000/accounts/login/';
-  const loginUrl = 'http://43.200.108.45//accounts/login/';
+  const loginUrl = 'http://127.0.0.1:8000/accounts/login/';
+  // const loginUrl = 'http://43.200.108.45//accounts/login/';
 
   try {
     const response = await fetch(loginUrl, {

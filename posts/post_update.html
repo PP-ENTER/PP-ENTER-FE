@@ -23,8 +23,8 @@
         <div class="container mx-auto">
             <div class="header flex justify-between items-center p-4">
                 <div class="logo">
-                    <a href="post_detail.html" class="text-xl font-bold">
-                        <img src="\img\img_logo.png" alt="PP&ENTER Logo" class="h-20">
+                    <a href="post_list.html" class="text-xl font-bold">
+                        <img src="../static/assets/img/img_logo.png" alt="PP&ENTER Logo" class="h-20">
                     </a>
                 </div>
 
@@ -61,8 +61,8 @@
                     <input type="text" id="tag" name="tag" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
                 </div>
                 <div class="flex space-x-4">
-                    <button id="editPostBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="display:none;">수정하기</button>
-                    <button id="deletePostBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="display:none;">삭제하기</button>
+                    <button onclick="editPost()" id="editPostBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">수정하기</button>
+                    <button onclick="deletePost()" id="deletePostBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">삭제하기</button>
                 </div>
             </form>
         </section>
