@@ -14,7 +14,8 @@ function registerUser() {
     };
   
     // Send a POST request to the server
-    fetch('http://127.0.0.1:8000/accounts/register/', {
+    fetch('http://43.200.108.45/accounts/register/', {
+      // fetch('http://127.0.0.1:8000/accounts/register/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

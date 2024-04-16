@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // formData.append('tag', tag);
 
         try {
-            const response = await fetch('http://127.0.0.1:8000/posts/create/', {
+            // const response = await fetch('http://127.0.0.1:8000/posts/create/', {
+            const response = await fetch('http://43.200.108.45/posts/create/', {
                 method: 'POST',
                 body: formData,
                 headers: {

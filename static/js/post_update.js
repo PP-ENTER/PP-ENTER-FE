@@ -98,7 +98,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchPostDetail(postId) {
-    fetch(`http://127.0.0.1:8000/posts/${postId}/`)
+    // fetch(`http://127.0.0.1:8000/posts/${postId}/`, {
+    fetch(`http://43.200.108.45/posts/${postId}/`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,  // 토큰을 Bearer 스키마로 포함
+            'Content-Type': 'application/json'
+        }
+    })
         .then(response => response.json())
         .then(post => {
             console.log(post.image_url)
@@ -127,7 +134,8 @@ function editPost(postId) {
 }
 
 function deletePost(postId) {
-    fetch(`http://127.0.0.1:8000/posts/${postId}/`, { method: 'DELETE' })
+    fetch(`http://43.200.108.45/posts/${postId}/`, { method: 'DELETE' })
+    // fetch(`http://127.0.0.1:8000/posts/${postId}/`, { method: 'DELETE' })
         .then(response => {
             if (response.ok) {
                 window.location.href = '/posts/';
