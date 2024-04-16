@@ -33,7 +33,7 @@
 // // 게시물 데이터 가져오기
 // function fetchPostData() {
 //     const postId = getPostIdFromUrl();
-//     fetch(`http://43.200.108.45/posts/${postId}/`)
+//     fetch(`http://52.79.54.171/posts/${postId}/`)
 //         .then(response => response.json())
 //         .then(data => {
 //             document.getElementById('title').value = data.title;
@@ -44,7 +44,7 @@
 
 // // 게시물 수정 요청 보내기
 // function updatePost(postId, formData) {
-//     fetch(`http://43.200.108.45/posts/${postId}/`, {
+//     fetch(`http://52.79.54.171/posts/${postId}/`, {
 //         method: 'PUT',
 //         body: formData
 //     })
@@ -98,8 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchPostDetail(postId) {
-    // fetch(`http://127.0.0.1:8000/posts/${postId}/`, {
-    fetch(`http://43.200.108.45/posts/${postId}/`, {
+    // fetch(`http://52.79.54.171/posts/${postId}/`, {
+    fetch(`http://52.79.54.171/posts/${postId}/`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${token}`,  // 토큰을 Bearer 스키마로 포함
@@ -134,8 +134,8 @@ function editPost(postId) {
 }
 
 function deletePost(postId) {
-    fetch(`http://43.200.108.45/posts/${postId}/`, { method: 'DELETE' })
-    // fetch(`http://127.0.0.1:8000/posts/${postId}/`, { method: 'DELETE' })
+    fetch(`http://52.79.54.171/posts/${postId}/`, { method: 'DELETE' })
+    // fetch(`http://52.79.54.171/posts/${postId}/`, { method: 'DELETE' })
         .then(response => {
             if (response.ok) {
                 window.location.href = '/posts/';
