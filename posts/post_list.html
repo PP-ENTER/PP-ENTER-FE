@@ -233,55 +233,59 @@
     const searchResultsContainer = document.getElementById('search-results'); // 검색 결과를 표시할 컨테이너
 
     //프로필 ID 가져오기
-    document.getElementById('profile_id').addEventListener('click', function() {
-    window.location.href = `/accounts/profile.html?userId=${1}`;
-    });
+    document
+      .getElementById('profile_id')
+      .addEventListener('click', function () {
+        window.location.href = `/accounts/profile.html?userId=${ 1}`;
+      });
 
     document.addEventListener('DOMContentLoaded', function () {
       // 로그아웃 버튼 클릭 이벤트 핸들러
-    const logoutButton = document.getElementById('logoutButton');
-    logoutButton.addEventListener('click', function (e) {
-      e.preventDefault();
-      // 로컬 스토리지에서 로그인 정보(토큰 등) 삭제
-      localStorage.removeItem('userToken');
-      // 로그인 페이지로 리다이렉션
-      window.location.href = '../accounts/login.html'; // 실제 로그인 페이지 URL로 변경 필요
-    });
+      const logoutButton = document.getElementById('logoutButton');
+      logoutButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        // 로컬 스토리지에서 로그인 정보(토큰 등) 삭제
+        localStorage.removeItem('userToken');
+        // 로그인 페이지로 리다이렉션
+        window.location.href = '../accounts/login.html'; // 실제 로그인 페이지 URL로 변경 필요
+      });
 
-    // 검색 버튼 클릭 이벤트 리스너 추가
-    searchButton.addEventListener('click', () => {
-      const query = searchInput
-        .value
-        .trim(); // 입력된 검색어
+      // 검색 버튼 클릭 이벤트 리스너 추가
+      searchButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        const query = searchInput
+          .value
+          .trim(); // 입력된 검색어
 
-    // 페이지 로드 시 로그인 상태 확인
-    checkLoginStatus();
-  });
+        // 페이지 로드 시 로그인 상태 확인
+        //checkLoginStatus();
+        const url = `http://localhost:8000/posts/posts_main_list_search/${query}/`;
+        // const url = `http://43.200.108.45/posts/posts_main_list_search/${query}/`;
+
+        // fetch를 사용하여 API에 GET 요청
+        fetch(url)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json(); // JSON 형식으로 응답 받음
+          })
+          .then(data => {
+            const container = document.getElementById('cardSlider');
+            container.innerHTML = '';
+            data.forEach(post => {
+              const card = createCardElement(post);
+              container.appendChild(card);
+            });
+            initializeSlider();
+          })
+          .catch(error => {
+            console.error('Fetching error:', error);
+          });
+      });
 
       // API 엔드포인트 URL
-      const url = `http://localhost:8000/posts/posts_main_list_search/${query}/`;
-      // const url = `http://43.200.108.45/posts/posts_main_list_search/${query}/`;
 
-      // fetch를 사용하여 API에 GET 요청
-      fetch(url)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json(); // JSON 형식으로 응답 받음
-        })
-        .then(data => {
-          const container = document.getElementById('cardSlider');
-          container.innerHTML = '';
-          data.forEach(post => {
-            const card = createCardElement(post);
-            container.appendChild(card);
-          });
-          initializeSlider();
-        })
-        .catch(error => {
-          console.error('Fetching error:', error);
-        });
     });
 
     function createCardElement(post) {
@@ -361,17 +365,17 @@
         slider.style.transform = `translateX(${newTranslateX}px)`;
       }
     }
-  
-  function checkLoginStatus() {
-    // 로컬 스토리지에서 토큰 가져오기
-    const token = localStorage.getItem('userToken');
-    // 토큰 유무에 따라 로그인 상태 결정 (간단한 예시)
-    if (!token) {
-      // 로그인 정보 없음, 로그인 페이지로 리다이렉션
-      window.location.href = '/login.html'; // 실제 로그인 페이지 URL로 변경 필요
+
+    function checkLoginStatus() {
+      // 로컬 스토리지에서 토큰 가져오기
+      const token = localStorage.getItem('userToken');
+      // 토큰 유무에 따라 로그인 상태 결정 (간단한 예시)
+      if (!token) {
+        // 로그인 정보 없음, 로그인 페이지로 리다이렉션
+        window.location.href = '/login.html'; // 실제 로그인 페이지 URL로 변경 필요
+      }
+      // 로그인 상태인 경우, 추가적인 UI 업데이트 로직 구현 가능
     }
-    // 로그인 상태인 경우, 추가적인 UI 업데이트 로직 구현 가능
-  }
   </script>
 </body>
 
