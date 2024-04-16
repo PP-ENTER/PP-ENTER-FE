@@ -47,8 +47,9 @@
     // 세부내역 조회
     function profile_search(){
     const id = 1  
-    // fetch(`http://43.200.108.45/accounts/profile/${id}/`) 
-    fetch(`http://127.0.0.1:8000/accounts/profile/${id}/`) 
+
+    // fetch(`http://127.0.0.1:8000/accounts/profile/${id}/`) 
+    fetch(`http://52.79.54.171/accounts/profile/${id}/`) 
     .then(response => response.json())
     .then(data => {
         const img = document.getElementById("profile_img");
