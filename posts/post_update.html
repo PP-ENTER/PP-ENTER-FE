@@ -41,6 +41,9 @@
     <main class="container mx-auto">
         <section class="content p-4">
             <form id="updateForm">
+                <div class="mb-4 text-center">
+                    <img id="postImage" src="https://via.placeholder.com/400" alt="Post Image" class="mx-auto" style="width: 500px; height: 500px;">
+                </div>
                 <div class="mb-4">
                     <label for="title" class="block text-gray-700 font-bold mb-2">제목</label>
                     <input type="text" id="title" name="title" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
@@ -58,7 +61,8 @@
                     <input type="text" id="tag" name="tag" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500">
                 </div>
                 <div class="flex space-x-4">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">수정하기</button>
+                    <button id="editPostBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="display:none;">수정하기</button>
+                    <button id="deletePostBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style="display:none;">삭제하기</button>
                 </div>
             </form>
         </section>
@@ -67,6 +71,6 @@
         <p class="text-gray-500">&copy; 2024 PP&amp;ENTER. All rights reserved.</p>
     </footer>
     
-    <script src="post_update.js"></script>
+    <script src="../static/JS/post_update.js"></script>
 </body>
 </html>

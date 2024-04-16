@@ -6,6 +6,13 @@ function fetchPosts() {
             const container = document.getElementById('cardSlider');
             data.forEach(post => {
                 const card = createCardElement(post);
+                // card.setAttribute('data-id', post.id); // 카드에 post ID 저장
+                // card.addEventListener('click', function() {
+                //     window.location.href = `/posts/posts_update.html/${this.getAttribute('data-id')}`; // 상세 페이지로 이동
+                // });
+                card.addEventListener('click', function() {
+                    window.location.href = `/posts/post_update.html?id=${post.id}`; // 상세 페이지로 이동
+                });
                 container.appendChild(card);
             });
             initializeSlider();
@@ -57,6 +64,8 @@ function createCardElement(post) {
     // 예시 코드에서는 해당 부분을 생략했습니다.
     // 해당 정보를 추가하려면, 각각에 대한 정보를 post 객체에서 추출하여
     // 생성된 요소에 클래스를 할당하고 card 또는 body에 appendChild 메서드를 사용하여 추가합니다.
+
+    
 
     return card;
 }
