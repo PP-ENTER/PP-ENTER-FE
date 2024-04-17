@@ -21,7 +21,7 @@ loginForm.addEventListener('submit', async (event) => {
   const password = passwordInput.value;
 
   // const loginUrl = 'http://127.0.0.1:8000/accounts/login/';
-  const loginUrl = 'http://52.79.54.171/accounts/login/';
+  const loginUrl = 'http://43.201.47.166/accounts/login/';
 
   try {
     const response = await fetch(loginUrl, {

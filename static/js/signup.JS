@@ -16,7 +16,7 @@ function registerUser() {
     // Send a POST request to the server
       // fetch('http://127.0.0.1:8000/accounts/register/', {
 
-    fetch('http://52.79.54.171/accounts/register/', {
+    fetch('http://43.201.47.166/accounts/register/', {
 
       method: 'POST',
       headers: {
