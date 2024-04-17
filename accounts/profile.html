@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+  <div class="wrapper bg-gray-100 p-8 rounded-lg flex flex-col items-center justify-center shadow-md">
+    <!-- 로고 이미지 -->
+    <div class="rounded-lg overflow-hidden mb-8">
+        <img src="..\static\assets\img\img_logo.png" alt="logo Image" class="h-20 mb-4">
+    </div>
+    <!-- 로그아웃 버튼 -->
+    <button id="logoutButton" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg focus:outline-none">로그아웃</button>
+
+    <!-- 프로필 사진 -->
+    <div class="img-area relative h-60 w-60 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+      <div class="inner-area h-3/4 w-3/4 rounded-full overflow-hidden">
+        <img id="profile_img" src="https://images.unsplash.com/photo-1492288991661-058aa541ff43?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="" class="h-full w-full object-cover">
+      </div>
+      <!-- 이름 텍스트 -->
+      <div id="profile_name" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-gray-700 font-semibold">이름</div>
+    </div>
+
+    <!-- 영상통화, 친구추가 버튼 -->
+    <div class="buttons flex mb-4">
+      <button class="flex-1 mr-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg focus:outline-none">영상통화</button>
+      <button class="flex-1 ml-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg focus:outline-none">친구추가</button>
+    </div>
+
+    <!-- 소개 입력 칸 -->
+    <textarea class="w-full h-20 bg-gray-100 border border-gray-300 rounded-lg p-2 mb-4" placeholder="자기 소개를 입력하세요..."></textarea>
+
+    <!-- 즐겨찾기, 스크린샷 더보기, 지난 기록 더보기 버튼 -->
+    <div class="flex w-full justify-between">
+      <button class="flex-1 mr-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg focus:outline-none">즐겨찾기</button>
+      <button class="flex-1 ml-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg focus:outline-none">스크린샷 더보기</button>
+      <button class="flex-1 ml-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg focus:outline-none">지난 기록 더보기</button>
+    </div>
+    
+  </div>
+
+  <script>
+    // 세부내역 조회
+    function profile_search(){
+    const id = 1  
+
+    // fetch(`http://127.0.0.1:8000/accounts/profile/${id}/`) 
+    fetch(`http://52.79.54.171/accounts/profile/${id}/`) 
+    .then(response => response.json())
+    .then(data => {
+        const img = document.getElementById("profile_img");
+        const name = document.getElementById("profile_name");
+        console.log(data.profile_image);
+        name.innerText = data.nickname
+    })
+    .catch(error => console.error('Error fetching data:', error));
+  }
+  document.addEventListener('DOMContentLoaded', profile_search);
+
+  const logoutButton = document.getElementById('logoutButton');
+      logoutButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        // 로컬 스토리지에서 로그인 정보(토큰 등) 삭제
+        localStorage.removeItem('userToken');
+        // 로그인 페이지로 리다이렉션
+        window.location.href = '../accounts/login.html'; 
+      })
+  </script>
+</body>
+</html>
+
+
