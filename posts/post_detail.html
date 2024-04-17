@@ -139,7 +139,7 @@
     }
 
     function fetchUserData(userId) {
-      fetch(`http://52.79.54.171/posts/posts_detail_list/${userId}/`)
+      fetch(`http://43.201.47.166/posts/posts_detail_list/${userId}/`)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -212,7 +212,7 @@
         .trim(); // 입력된 검색어
 
       // API 엔드포인트 URL
-      const url = `http://52.79.54.171/posts/posts_detail_list_search/${query}/`;
+      const url = `http://43.201.47.166/posts/posts_detail_list_search/${query}/`;
 
       // fetch를 사용하여 API에 GET 요청
       fetch(url)

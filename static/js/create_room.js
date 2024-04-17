@@ -2,7 +2,7 @@ document.getElementById('createRoomBtn').addEventListener('click', function() {
     const roomName = prompt("방 이름을 입력하세요:");
     if (roomName) {
         // fetch('http://127.0.0.1:8000/facechats/create_facechat/', {
-        fetch('http://52.79.54.171/facechats/create_facechat/', {
+        fetch('http://43.201.47.166/facechats/create_facechat/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

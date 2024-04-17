@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function fetchPostDetail(postId) {
   console.log(postId);
   // fetch(`http://127.0.0.1:8000/posts/posts/${postId}/`, {
-    fetch(`http://52.79.54.171/posts/posts/${postId}/`, {
+    fetch(`http://43.201.47.166/posts/posts/${postId}/`, {
   })
     .then((response) => response.json())
     .then((post) => {
@@ -52,7 +52,7 @@ function editPost() {
   
 
 
-fetch(`http://52.79.54.171/posts/${postId2}/`, {
+fetch(`http://43.201.47.166/posts/${postId2}/`, {
   // fetch(`http://127.0.0.1:8000/posts/${postId2}/`, {
     method: 'PATCH', // Use PATCH method to update parts of the post
     body: formData, // FormData object which includes file if selected
@@ -75,7 +75,7 @@ function deletePost() {
   const urlParams1 = new URLSearchParams(window.location.search);
   const postId1 = urlParams1.get("id"); // 'id' 쿼리 파라미터의 값을 가져옵니다.
   
-  fetch(`http://52.79.54.171/posts/${postId1}/`, {
+  fetch(`http://43.201.47.166/posts/${postId1}/`, {
   // fetch(`http://127.0.0.1:8000/posts/${postId1}/`, {
     method: "DELETE", // HTTP 메소드 DELETE를 사용하여 리소스 삭제
   })

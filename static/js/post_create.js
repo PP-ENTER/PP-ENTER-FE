@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // fetch('http://127.0.0.1:8000/posts/create/', {
-      fetch("http://52.79.54.171/posts/create/", {
+      fetch("http://43.201.47.166/posts/create/", {
         method: "POST",
         body: formData,
         // headers: {
